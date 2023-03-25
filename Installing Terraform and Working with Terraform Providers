@@ -1,47 +1,76 @@
 Learning Objectives
-
+====================
 Download And Manually Install the Terraform Binary
 Clone Over Code for Terraform Providers
 Deploy the Code with Terraform Apply
 
+
 A. Introduction
+===============
 In this hands-on lab, we'll go through installing and configuring Terraform version 13 on a Linux OS. We will also explore how to select and use a Terraform provider from among the many providers available publicly.
 
-B. Solution
-Log in to the lab server using the credentials provided:
 
+B. Solution
+===========
+
+Log in to the lab server using the credentials provided:
+****************************
 ssh cloud_user@<PublicIP>
+****************************
+
+
 In a web browser, log in to the AWS Management Console using the credentials provided.
+
 
 C. Download And Manually Install the Terraform Binary
 Download the appropriate Terraform binary package for the provided lab server VM (Linux 64-bit) using the wget command:
 
+****************************************************************************************
 wget -c https://releases.hashicorp.com/terraform/0.13.4/terraform_0.13.4_linux_amd64.zip
+****************************************************************************************
+
+
 Unzip the downloaded file:
-
+****************************************************************************************
 unzip terraform_0.13.4_linux_amd64.zip
-Place the Terraform binary in the PATH of the VM operating system so the binary is accessible system-wide to all users:
+****************************************************************************************
 
+
+Place the Terraform binary in the PATH of the VM operating system so the binary is accessible system-wide to all users:
+****************************
 sudo mv terraform /usr/sbin/
+****************************
+
 Note: If prompted, enter the username and password provided for the lab server.
 
 Check the Terraform version information:
-
+*****************
 terraform version
+*****************
+
 Since the Terraform version is returned, you have validated that the Terraform binary is installed and working properly.
 
 D. Clone Over Code for Terraform Providers
+==========================================
 Create a providers directory:
 
+***************
 mkdir providers
+***************
+
 Move into the providers directory:
-
+*************
 cd providers/
+*************
+
 Create the file main.tf:
-
+***********
 vim main.tf
-Paste in the following code from the provided GitHub repo:
+***********
 
+
+Paste in the following code from the provided GitHub repo:
+**************************************
 provider "aws" {
   alias  = "us-east-1"
   region = "us-east-1"
@@ -62,25 +91,38 @@ resource "aws_sns_topic" "topic-us-west" {
   provider = aws.us-west-2
   name     = "topic-us-west"
 }
+**************************************
+
+
 To save and exit the file, press Escape and enter :wq.
+
 
 E. Deploy the Code with Terraform Apply
 Enable verbose output logging for Terraform commands using TF_LOG=TRACE:
-
+*******************
 export TF_LOG=TRACE
+*******************
+
 Note: You can turn off verbose logging at any time using the export TF_LOG= command.
 
 Initialize the working directory where the code is located:
 
+**************
 terraform init
-Review the actions performed when you deploy the Terraform code:
+**************
 
+Review the actions performed when you deploy the Terraform code:
+**************
 terraform plan
+**************
+
 Note: Two resources will be created, consistent with the providers that were configured in the provided code snippet.
 
 Deploy the code:
-
+***************
 terraform apply
+***************
+
 When prompted, type yes and press Enter.
 
 Verify that two resources were created with their corresponding Amazon Resource Name (ARN) IDs in the region in which they were spun up.
@@ -97,5 +139,9 @@ At the top-right, click N. Virginia and select us-west-2.
 Verify that the topic-us-west resource appears in the list.
 Tear down the infrastructure you just created before moving on:
 
+********************************
 terraform destroy --auto-approve
-Conclusion
+********************************
+
+F. Conclusion
+=============
