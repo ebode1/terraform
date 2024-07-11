@@ -172,15 +172,15 @@ This Terraform project automates the provisioning of an AWS Application Load Bal
 ## Example Usage
 ```hcl
 module "alb" {
-  source = "git::https://gitlab.dalkia.net/accenture/dalkia-terraform-pattern.git//alb"
+  source = "git::https://gitlab.lol.net/lol/alb"
 
-  vpc_id               = "vpc-12345678"
+  vpc_id               = "vpc-xxxx"
   target_group_port    = 8080
   https_enabled        = true
-  certificate_arn      = "arn:aws:acm:us-east-1:123456789012:certificate/abcdef12-3456-7890-abcd-1234567890ab"
+  certificate_arn      = "arn:xxxyyy"
   load_balancer_name   = "my-alb"
-  subnet_ids           = ["subnet-12345678", "subnet-87654321"]
-  security_group_ids   = ["sg-0123456789abcdef0"]
+  subnet_ids           = ["subnet-xxxxxx", "subnet-yyyyyy"]
+  security_group_ids   = ["sg-000000000"]
   internal             = false
   idle_timeout         = 60
   deletion_protection_enabled = false
@@ -216,13 +216,13 @@ module "alb" {
 
   # Additional SSL Certificates
   additional_certs = [
-    "arn:aws:acm:us-east-1:123456789012:certificate/abcdef12-3456-7890-abcd-1234567890ab",
-    "arn:aws:acm:us-east-1:123456789012:certificate/fedcba98-7654-3210-dcba-9876543210fe"
+    "arn:xxxx",
+    "arn:yyyy"
   ]
 
   # Route 53 DNS Configuration
   create_r53       = true
-  zone_id          = "Z0123456789ABCDEFGHIJ"
+  zone_id          = "ytfvgjvjyuhvgjbkg"
   zone_name        = "example.com"
   private_zone     = false
   r53_name         = "my-alb-dns-record"
