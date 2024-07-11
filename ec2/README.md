@@ -223,27 +223,27 @@ This Terraform module provisions EC2 instances, key pairs, IAM roles, and an aut
 ## Usage
 ```hcl
 module "rds" {
-  source              = "git::https://gitlab.dalkia.net/accenture/dalkia-terraform-pattern.git//ec2"
+  source              = "git::https://gitlab.lol.net/xxxx//ec2"
   create_asg          = true
   create_key_pair     = true
-  key_name            = "kp.ec2.prn"
-  image_id            = "ami-123455654"
+  key_name            = "kp.xxxx"
+  image_id            = "ami-xxxxx"
   instance_type       = "t2.micro"
   max_size            = 1
   min_size            = 1
-  name_prefix         = "ec2.prn.navsion1"
+  name_prefix         = "ec2.xxx.xxxx"
   os_type             = "windows"
-  subnet_ids          = ["subnet-123455"]
-  security_group_ids  = ["sg-12345"]
+  subnet_ids          = ["subnet-xxxx"]
+  security_group_ids  = ["sg-xxx"]
   create_iam_role     = true
-  role_name_ec2       = "IAM.ROLE.EC2.PRN.IHM"
-  account_id          = "1234456"
+  role_name_ec2       = "IAM.ROLE.EC2.xxx.xxx"
+  account_id          = "xxxx"
   assume_role_path    = "resources/assume_role.json"
   policy_path         = "resources/ec2_policy.json"
-  policy_name_ec2     = "IAM.POLICY.EC2.PRN.IHM"
+  policy_name_ec2     = "IAM.POLICY.EC2.xxx"
   managed_policy_arns = ["arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM", "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore", "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess"]
   role_name_boundary  = (terraform.workspace != "eti") ? "IAM.POL.BOUNDARY" : ""
-  target_group_arns = ["arn:aws:iam::aws:tg/123A4"]
+  target_group_arns = ["arn:aws:iam::aws:tg/xxxx"]
   block_device_mappings = [
     {
       device_name = "/dev/sda1"
@@ -284,11 +284,11 @@ module "rds" {
     volume_Mapping = "/dev/sda1:C,xvdf:D"
   }
   tags = {
-    app          = "PRN01"
-    Name         = "ec2-prn-pirene-ihm1"
-    application  = "pirene"
-    fonction     = "prn-ihm1"
-    env          = "PPR"
+    app          = "xxxx"
+    Name         = "ec2-xxx-xxx"
+    application  = "xxxx"
+    fonction     = "xxx"
+    env          = "xxx"
   }
 
 }
